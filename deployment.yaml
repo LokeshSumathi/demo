@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: helloserver
-  type: loadbalancer
+  type: NodePort
   ports:
     - protocol: TCP
       port: 80
@@ -34,21 +34,21 @@ spec:
         image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
         ports:
         - containerPort: 80
-# ---
-# apiVersion: extensions/v1beta1
-# kind: Ingress
-# metadata:
-#   name: "helloserver-ingress"
-#   annotations:
-#     kubernetes.io/ingress.class: alb
-#     alb.ingress.kubernetes.io/scheme: internet-facing
-#   labels:
-#     app: helloserver-ingress
-# spec:
-#   rules:
-#     - http:
-#         paths:
-#           - path: /*
-#             backend:
-#               serviceName: helloserver-service
-#               servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "helloserver-ingress"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  labels:
+    app: helloserver-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: "helloserver-service"
+              servicePort: 80

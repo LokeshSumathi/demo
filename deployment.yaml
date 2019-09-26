@@ -42,6 +42,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/subnets: subnet-098c3e9db6e64d201, subnet-05dcbd276efd6d3e3
   labels:
     app: helloserver-ingress
 spec:

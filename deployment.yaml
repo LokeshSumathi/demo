@@ -43,11 +43,15 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/subnets: subnet-098c3e9db6e64d201, subnet-05dcbd276efd6d3e3
+    alb.ingress.kubernetes.io/ip-address-type: ipv4
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-west-1:155136788633:certificate/b7386b8d-9086-4252-92f0-6a1796e012f4"
   labels:
     app: helloserver-ingress
 spec:
   rules:
-    - http:
+    - host: helloserver-service.couponbeard.com
+      http:
         paths:
           - path: /
             backend:

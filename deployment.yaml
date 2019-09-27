@@ -48,7 +48,8 @@ metadata:
     app: helloserver-ingress
 spec:
   rules:
-    - http:
+    - host: helloserver-service.couponbeard.com
+      http:
         paths:
           - path: /*
             backend:
